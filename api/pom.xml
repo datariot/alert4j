@@ -15,6 +15,13 @@
   <inceptionYear>2009</inceptionYear>
   <description>Provides an API for passing application alerts to users.</description>
 
+  <licenses>
+    <license>
+      <name>New BSDL</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+    </license>
+  </licenses>
+
   <organization>
     <name>David W. Allen</name>
     <url>http://davidwallen.net</url>

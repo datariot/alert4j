@@ -9,6 +9,13 @@
   <inceptionYear>2009</inceptionYear>
   <description>OSGI Bundles for enabling applications to pass messages to users.</description>
 
+  <licenses>
+    <license>
+      <name>New BSDL</name>
+      <url>http://www.opensource.org/licenses/bsd-license.php</url>
+    </license>
+  </licenses>
+
   <modules>
     <module>api</module>
     <module>growl</module>
