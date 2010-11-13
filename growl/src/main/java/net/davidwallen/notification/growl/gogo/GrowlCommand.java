@@ -38,6 +38,11 @@ public class GrowlCommand {
   @Requires
   private GrowlService service;
 
+  @Descriptor(description = "Adds a host to the notification list.")
+  public void addHost(@Descriptor(description = "hostname") String host) {
+    this.addHost(host, 9887);
+  }
+
   /**
    * Adds a host to the notification list.
    * @param host the hostname of a recipient.
@@ -46,9 +51,6 @@ public class GrowlCommand {
   @Descriptor(description = "Adds a host to the notification list.")
   public void addHost(@Descriptor(description = "hostname") String host,
       @Descriptor(description = "port") Integer port) {
-    if (null == port) {
-      port = 9887;
-    }
     try {
       logger.info("Registering {}", host);
       InetAddress address = InetAddress.getByName(host);

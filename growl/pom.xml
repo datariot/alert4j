@@ -110,6 +110,44 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-ipojo-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>ipojo-bundle</goal>
+            </goals>
+            <configuration>
+              <!--<ignoreAnnotations>true</ignoreAnnotations>-->
+              <metadata>src/main/resources/ipojo/metadata.xml</metadata>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-artifacts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>attach-artifact</goal>
+            </goals>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>target/classes/net/davidwallen/notification/growl/growl.xml</file>
+                  <type>xml</type>
+                  <classifier>features</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

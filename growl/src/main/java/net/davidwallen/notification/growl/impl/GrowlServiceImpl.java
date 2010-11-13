@@ -15,7 +15,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import org.apache.felix.ipojo.annotations.Component;
+import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.annotations.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,7 +29,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-@Component
+@Component(immediate=true)
 @Provides
 public class GrowlServiceImpl implements GrowlService {
 
@@ -36,6 +38,25 @@ public class GrowlServiceImpl implements GrowlService {
   private Logger logger = LoggerFactory.getLogger(GrowlService.class);
   private HashMap<InetAddress, Integer> hostMap = new HashMap<InetAddress, Integer>();
 
+  /**
+   * Starts the growl service.
+   */
+  @Validate
+  public void start() {
+    logger.info("Started Growl service. ");
+  }
+
+  /**
+   * Shutdown the growl service.
+   */
+  @Invalidate
+  public void stop() {
+    logger.info("Shutting down Growl service.");
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public String getName() {
     return serviceName;
