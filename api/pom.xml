@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+<parent>
+    <groupId>net.davidwallen.notification</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0</version>
+  </parent>
+  <groupId>net.davidwallen.notification</groupId>
+  <artifactId>api</artifactId>
+  <version>1.0</version>
+  <packaging>bundle</packaging>
+
+  <name>[davidwallen] Notification API</name>
+  <inceptionYear>2009</inceptionYear>
+  <description>Provides an API for passing application alerts to users.</description>
+
+  <organization>
+    <name>David W. Allen</name>
+    <url>http://davidwallen.net</url>
+  </organization>
+
+  <developers>
+    <developer>
+      <name>David W. Allen</name>
+      <email>david.w.allen@me.com</email>
+    </developer>
+  </developers>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>2.1.0</version>
+        <extensions>true</extensions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
