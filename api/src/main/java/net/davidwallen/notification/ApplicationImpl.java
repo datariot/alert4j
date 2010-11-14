@@ -30,6 +30,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Basic implementation of the Application interface.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */

@@ -27,6 +27,7 @@
 package net.davidwallen.notification;
 
 /**
+ * A notification to be sent from applications to Notification Services.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */

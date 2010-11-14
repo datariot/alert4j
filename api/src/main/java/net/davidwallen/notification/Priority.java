@@ -27,8 +27,7 @@
 package net.davidwallen.notification;
 
 /**
- *
- * The priority of a notification can be set by the following enum.
+ * The priority of a notification can be set by using this enum.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
@@ -46,6 +45,10 @@ public enum Priority {
     this.value = value;
   }
 
+  /**
+   * Returns the value assigned for the priority.
+   * @return numeric value of the priority.
+   */
   public byte getPriorityValue() {
     return value;
   }

@@ -27,6 +27,8 @@
 package net.davidwallen.notification;
 
 /**
+ * A service for sending notifications. An application needs to be registered before
+ * notifications can be sent.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
@@ -39,7 +41,7 @@ public interface NotificationService {
   String getName();
 
   /**
-   * Retisters and application with all of the growl clients.
+   * Registers and application with all of the growl clients.
    * @param app the application to register.
    */
   void registerApplication(Application app);

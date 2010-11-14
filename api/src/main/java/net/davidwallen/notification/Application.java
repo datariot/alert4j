@@ -27,6 +27,7 @@
 package net.davidwallen.notification;
 
 /**
+ * An application can be registered for sending notifications.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
@@ -40,7 +41,7 @@ public interface Application {
 
   /**
    * Returns an array of types that
-   * @return
+   * @return registered NotificationTypes
    */
   NotificationType[] getRegisteredNotificationTypes();
 

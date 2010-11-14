@@ -27,7 +27,6 @@
 package net.davidwallen.notification;
 
 /**
- *
  * A notification to be sent to Growl.
  *
  * @author David W. Allen <david.w.allen@me.com>
