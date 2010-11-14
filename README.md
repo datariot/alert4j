@@ -4,19 +4,19 @@ This project allows Java applications to send notifications to a service. Growl 
 
 Creating a notification able application is easy. You need to define three things: the notification service, your application, and the types of notifications to be sent.
 
-To setup the growl service and add a receiving client:
+To setup the growl service and add a receiving client:  
   `GrowlServiceImpl service = new GrowlServiceImpl();
    service.addClient(InetAddress.getByName("My-MBP.local"), 9887);`
 
 Port 9887 is the default port for Growl to listen on. Note that you must enable remote notifications under the Growl preference panel.
 
-To define an application you need a name ("Test Me") and a list of valid NotificationTypes. In this instance there is just one type of notification, GrowTestType.TEST. I usually define the NotificationTypes in an enum.
+To define an application you need a name ("Test Me") and a list of valid NotificationTypes. In this instance there is just one type of notification, GrowTestType.TEST. I usually define the NotificationTypes in an enum.  
   `Application app = new ApplicationImpl("Test Me", GrowlTestType.TEST);`
 
-And before the application can send notifications, it must be registered with the service:
+And before the application can send notifications, it must be registered with the service:  
   `service.registerApplication(app);`
 
-Now let's construct a notification titled "Testing" with the content "Growl Test" and send it to the client:
+Now let's construct a notification titled "Testing" with the content "Growl Test" and send it to the client:  
   `Notification note1 = new NotificationImpl(app, "Testing", "Growl Test", GrowlTestType.TEST);
    service.sendNotification(note1);`
 
