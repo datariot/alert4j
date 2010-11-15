@@ -39,12 +39,12 @@ public interface NotificationType {
    * Get the name of the notification.
    * @return the name of the Notification Type.
    */
-  public String getTypeName();
+  String getTypeName();
 
   /**
    * Query if this notification type is enabled.
    * @return true if enabled, false otherwise.
    */
-  public boolean isEnabled();
+  boolean isEnabled();
 
 }

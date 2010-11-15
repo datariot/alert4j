@@ -40,6 +40,7 @@ import java.net.SocketException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
+import java.util.Map;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
@@ -59,27 +60,27 @@ import org.slf4j.LoggerFactory;
 @Provides
 public class GrowlServiceImpl implements GrowlService {
 
-  /** The default prot to open a socket to. */
-  public static int DEFAULT_PORT = 9887;
+  /** The default port to open a socket to. */
+  public static final int DEFAULT_PORT = 9887;
   /** The GNTP version. This is Unencrypted. No support for encryption right now. */
-  public static byte GNTP_VERSION = 1;
+  public static final byte GNTP_VERSION = 1;
   /** The packet type of registration packets with MD5 authentication. */
-  public static byte GROWL_TYPE_REGISTRATION = 0;
+  public static final byte GROWL_TYPE_REGISTRATION = 0;
   /** The packet type of notification packets with MD5 authentication. */
-  public static byte GROWL_TYPE_NOTIFICATION = 1;
+  public static final byte GROWL_TYPE_NOTIFICATION = 1;
   /** The packet type of registration packets with SHA-256 authentication. */
-  public static byte GROWL_TYPE_REGISTRATION_SHA256 = 2;
+  public static final byte GROWL_TYPE_REGISTRATION_SHA256 = 2;
   /** The packet type of notification packets with SHA-256 authentication. */
-  public static byte GROWL_TYPE_NOTIFICATION_SHA256 = 3;
+  public static final byte GROWL_TYPE_NOTIFICATION_SHA256 = 3;
   /** The packet type of registration packets without authentication. */
-  public static byte GROWL_TYPE_REGISTRATION_NOAUTH = 4;
+  public static final byte GROWL_TYPE_REGISTRATION_NOAUTH = 4;
   /** The packet type of notification packets without authentication. */
-  public static byte GROWL_TYPE_NOTIFICATION_NOAUTH = 5;
+  public static final byte GROWL_TYPE_NOTIFICATION_NOAUTH = 5;
 
   private static final String serviceName = "Growl";
   private static final String UTF8 = "UTF-8";
   private Logger logger = LoggerFactory.getLogger(GrowlService.class);
-  private HashMap<InetAddress, Integer> hostMap = new HashMap<InetAddress, Integer>();
+  private Map<InetAddress, Integer> hostMap = new HashMap<InetAddress, Integer>();
 
   /**
    * Starts the growl service.
@@ -225,8 +226,7 @@ public class GrowlServiceImpl implements GrowlService {
     for (Byte defaultIndex : defaults) {
       out.writeByte(defaultIndex);
     }
-    byte[] total = appendMD5(byteOut, md);
-    return total;
+    return appendMD5(byteOut, md);
   }
 
   /**
@@ -264,8 +264,7 @@ public class GrowlServiceImpl implements GrowlService {
     out.write(noteTitle);
     out.write(noteDesc);
     out.write(appName);
-    byte[] total = appendMD5(byteOut, md);
-    return total;
+    return appendMD5(byteOut, md);
   }
 
   /**

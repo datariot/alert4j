@@ -52,12 +52,12 @@ public class GrowlCommand {
    * Defines the command scope (ipojo).
    */
   @ServiceProperty(name = "osgi.command.scope")
-  String m_scope = "growl";
+  private String m_scope = "growl";
   /**
    * Defines the functions (commands).
    */
   @ServiceProperty(name = "osgi.command.function")
-  String[] m_function = new String[]{
+  private String[] m_function = new String[]{
     "addHost",
     "removeHost"
   };
