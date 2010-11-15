@@ -19,7 +19,6 @@
   <modules>
     <module>api</module>
     <module>growl</module>
-    <module>xmpp</module>
   </modules>
 
 </project>
