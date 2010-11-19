@@ -24,63 +24,57 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.davidwallen.notification;
+package net.davidwallen.notification.xmpp.gogo;
 
-import java.util.LinkedList;
-import java.util.List;
+import net.davidwallen.notification.xmpp.XMPPService;
+import org.apache.felix.ipojo.annotations.Component;
+import org.apache.felix.ipojo.annotations.Provides;
+import org.apache.felix.ipojo.annotations.Requires;
+import org.apache.felix.ipojo.annotations.ServiceProperty;
+import org.osgi.service.command.Descriptor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Basic implementation of the Application interface.
+ * This Class holds commands to use with the Growl service.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public class ApplicationImpl implements Application {
+@Component(public_factory = false, immediate = true)
+@Provides(specifications = XMPPCommand.class)
+public class XMPPCommand {
 
-  private final String name;
-
-  private final NotificationType[] registeredNotificationTypes;
-
-  private final List<Byte> defaults = new LinkedList<Byte>();
-
+  private Logger logger = LoggerFactory.getLogger(XMPPCommand.class);
   /**
-   * Setup an application with a name and the valid notification types.
-   * @param name Application name.
-   * @param validType valid notification types.
+   * Defines the command scope (ipojo).
    */
-  public ApplicationImpl(String name, NotificationType... validType) {
-    this.name = name;
-    this.registeredNotificationTypes = validType;
-    for(int i=0; i<this.registeredNotificationTypes.length; i++) {
-      if(this.registeredNotificationTypes[i].isEnabled()) {
-        defaults.add((byte)i);
-      }
-    }
+  @ServiceProperty(name = "osgi.command.scope")
+  private String m_scope = "xmpp";
+  /**
+   * Defines the functions (commands).
+   */
+  @ServiceProperty(name = "osgi.command.function")
+  private String[] m_function = new String[]{
+    "addUser",
+    "removeUser"
+  };
+  @Requires
+  private XMPPService service;
+
+  @Descriptor(description = "Adds a user to the notification list.")
+  public void addUser(@Descriptor(description = "username") String user) {
+    logger.info("Registering {}", user);
+    service.registerUser(user);
   }
 
   /**
-   * {@inheritDoc}
+   * Removes a host to the notification list.
+   * @param host the hostname of a recipient.
    */
-  @Override
-  public final String getName() {
-    return name;
+  @Descriptor(description = "Removes a user from the notification list.")
+  public void removeUser(@Descriptor(description = "username") String user) {
+      logger.info("Removing {}", user);
+      service.removeUser(user);
   }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public final NotificationType[] getRegisteredNotificationTypes() {
-    return registeredNotificationTypes;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public final Byte[] getDefaults() {
-    Byte[] returnArray = new Byte[defaults.size()];
-    defaults.toArray(returnArray);
-    return returnArray;
-  }
-
 }

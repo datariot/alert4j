@@ -58,7 +58,7 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public Application getApplication() {
+  public final Application getApplication() {
     return this.app;
   }
 
@@ -66,14 +66,14 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public Priority getPriority() {
+  public final Priority getPriority() {
     return priority;
   }
 
   /**
    * {@inheritDoc}
    */
-  public void setPriority(Priority priority) {
+  public final void setPriority(Priority priority) {
     this.priority = priority;
   }
 
@@ -81,14 +81,14 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public boolean isSticky() {
+  public final boolean isSticky() {
     return sticky;
   }
 
   /**
    * Sets the notification as sticky.
    */
-  public void makeSticky() {
+  public final void makeSticky() {
     sticky = true;
   }
 
@@ -96,7 +96,7 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public String getMessage() {
+  public final String getMessage() {
     return message;
   }
 
@@ -104,7 +104,7 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public String getTitle() {
+  public final String getTitle() {
     return title;
   }
 
@@ -112,7 +112,7 @@ public class NotificationImpl implements Notification {
    * {@inheritDoc}
    */
   @Override
-  public NotificationType getType() {
+  public final NotificationType getType() {
     return type;
   }
 

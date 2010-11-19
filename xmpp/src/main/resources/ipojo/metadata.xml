@@ -1,0 +1,10 @@
+<ipojo>
+  <instance component="net.davidwallen.notification.xmpp.gogo.XMPPCommand"/>
+  <instance component="net.davidwallen.notification.xmpp.impl.XMPPServiceImpl">
+    <property name="username" value="username@gmail.com" />
+    <property name="password" value="password" />
+    <property name="server" value="talk.google.com" />
+    <property name="port" value="5222" />
+    <property name="service" value="gmail.com" />
+  </instance>
+</ipojo>

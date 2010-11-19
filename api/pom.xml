@@ -7,13 +7,13 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <groupId>net.davidwallen.notification</groupId>
-  <artifactId>api</artifactId>
+  <artifactId>core</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>[davidwallen] Notification API</name>
+  <name>[davidwallen] Notification Core</name>
   <inceptionYear>2009</inceptionYear>
-  <description>Provides an API for passing application alerts to users.</description>
+  <description>Provides core API and implementation for sending application alerts to users.</description>
 
   <licenses>
     <license>
