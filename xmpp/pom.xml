@@ -4,17 +4,17 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>parent</artifactId>
-    <groupId>net.davidwallen.notification</groupId>
+    <groupId>net.davidwallen.alert4j</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>net.davidwallen.notification</groupId>
+  <groupId>net.davidwallen.alert4j</groupId>
   <artifactId>xmpp</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>[davidwallen] XMPP Notifier</name>
+  <name>[davidwallen] XMPP Alerts</name>
   <inceptionYear>2009</inceptionYear>
-  <description>Provides notification to xmpp clients.</description>
+  <description>Provides alerts to xmpp clients.</description>
 
   <licenses>
     <license>
@@ -41,8 +41,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>net.davidwallen.notification</groupId>
-      <artifactId>api</artifactId>
+      <groupId>net.davidwallen.alert4j</groupId>
+      <artifactId>core</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
     </dependency>
@@ -150,7 +150,7 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>target/classes/net/davidwallen/notification/xmpp/xmpp.xml</file>
+                  <file>target/classes/net/davidwallen/alert4j/xmpp/xmpp.xml</file>
                   <type>xml</type>
                   <classifier>features</classifier>
                 </artifact>

@@ -1,4 +1,4 @@
 <ipojo>
-  <instance component="net.davidwallen.notification.growl.gogo.GrowlCommand"/>
-  <instance component="net.davidwallen.notification.growl.impl.GrowlServiceImpl"/>
+  <instance component="net.davidwallen.alert4j.growl.gogo.GrowlCommand"/>
+  <instance component="net.davidwallen.alert4j.growl.impl.GrowlServiceImpl"/>
 </ipojo>

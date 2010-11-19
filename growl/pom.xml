@@ -4,18 +4,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>net.davidwallen.notification</groupId>
+    <groupId>net.davidwallen.alert4j</groupId>
     <artifactId>parent</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
-  <groupId>net.davidwallen.notification</groupId>
+  <groupId>net.davidwallen.alert4j</groupId>
   <artifactId>growl</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
 
-  <name>[davidwallen] Growl Notification Bundle</name>
+  <name>[davidwallen] Growl Alerts</name>
   <inceptionYear>2009</inceptionYear>
-  <description>Provides notification to growl clients.</description>
+  <description>Provides alerts to growl clients.</description>
 
   <licenses>
     <license>
@@ -42,8 +42,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>net.davidwallen.notification</groupId>
-      <artifactId>api</artifactId>
+      <groupId>net.davidwallen.alert4j</groupId>
+      <artifactId>core</artifactId>
       <version>1.0-SNAPSHOT</version>
       <type>bundle</type>
     </dependency>
@@ -146,7 +146,7 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>target/classes/net/davidwallen/notification/growl/growl.xml</file>
+                  <file>target/classes/net/davidwallen/alert4j/growl/growl.xml</file>
                   <type>xml</type>
                   <classifier>features</classifier>
                 </artifact>
