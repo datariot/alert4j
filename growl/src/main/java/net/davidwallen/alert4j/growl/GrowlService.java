@@ -27,7 +27,7 @@
 package net.davidwallen.alert4j.growl;
 
 import java.net.InetAddress;
-import net.davidwallen.alert4j.NotificationService;
+import net.davidwallen.alert4j.AlertService;
 
 /**
  * Growl implementation of a Notification Service. This service
@@ -35,7 +35,7 @@ import net.davidwallen.alert4j.NotificationService;
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public interface GrowlService extends NotificationService {
+public interface GrowlService extends AlertService {
 
   /**
    * Add a client to the list of recipients.

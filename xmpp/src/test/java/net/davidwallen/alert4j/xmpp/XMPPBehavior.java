@@ -29,9 +29,9 @@ package net.davidwallen.alert4j.xmpp;
 
 import net.davidwallen.alert4j.Application;
 import net.davidwallen.alert4j.ApplicationImpl;
-import net.davidwallen.alert4j.Notification;
-import net.davidwallen.alert4j.NotificationImpl;
-import net.davidwallen.alert4j.NotificationType;
+import net.davidwallen.alert4j.Alert;
+import net.davidwallen.alert4j.AlertImpl;
+import net.davidwallen.alert4j.AlertType;
 import net.davidwallen.alert4j.xmpp.impl.XMPPServiceImpl;
 import org.jivesoftware.smack.XMPPException;
 
@@ -53,16 +53,16 @@ public class XMPPBehavior {
     Application app = new ApplicationImpl("Test Me", XMPPTestType.TEST_START, XMPPTestType.TEST_END);
     service.registerApplication(app);
 
-    Notification note1 = new NotificationImpl(app, "Starting", "Starting the test app", XMPPTestType.TEST_START);
-    Notification note2 = new NotificationImpl(app, "Ending", "Ending the test app", XMPPTestType.TEST_END);
+    Alert note1 = new AlertImpl(app, "Starting", "Starting the test app", XMPPTestType.TEST_START);
+    Alert note2 = new AlertImpl(app, "Ending", "Ending the test app", XMPPTestType.TEST_END);
 
-    service.sendNotification(note1);
-    service.sendNotification(note2);
+    service.sendAlert(note1);
+    service.sendAlert(note2);
     service.disconnect();
 
   }
 
-  private enum XMPPTestType implements NotificationType {
+  private enum XMPPTestType implements AlertType {
 
     TEST_START("Start", true),
     TEST_END("End", true);

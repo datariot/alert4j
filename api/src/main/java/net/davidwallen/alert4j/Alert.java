@@ -27,93 +27,46 @@
 package net.davidwallen.alert4j;
 
 /**
- * A notification to be sent to Growl.
+ * A notification to be sent from applications to Alert Services.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public class NotificationImpl implements Notification {
-
-  private final Application app;
-  private final String title;
-  private final String message;
-  private final NotificationType type;
-  private Priority priority = Priority.NORMAL;
-  private boolean sticky = false;
+public interface Alert {
 
   /**
-   * Constructor for a notification.
-   * @param app The application sending the notification.
-   * @param title The title of the NotificationImpl.
-   * @param message The message body of the NotificationImpl.
-   * @param type The notification type. The type must be registered with the app before use.
+   * Get the application reference that is sending the notification.
+   * @return the application object.
    */
-  public NotificationImpl(Application app, String title, String message, NotificationType type) {
-    this.app = app;
-    this.title = title;
-    this.message = message;
-    this.type = type;
-  }
+  Application getApplication();
 
   /**
-   * {@inheritDoc}
+   * Get the message body.
+   * @return message text.
    */
-  @Override
-  public final Application getApplication() {
-    return this.app;
-  }
+  String getMessage();
 
   /**
-   * {@inheritDoc}
+   * Return the priority assigned to this notification.
+   * @return priority.
    */
-  @Override
-  public final Priority getPriority() {
-    return priority;
-  }
+  Priority getPriority();
 
   /**
-   * {@inheritDoc}
+   * Get the title();
+   * @return the title text;
    */
-  public final void setPriority(Priority priority) {
-    this.priority = priority;
-  }
+  String getTitle();
 
   /**
-   * {@inheritDoc}
+   * Get the type of notification.
+   * @return the NotificationImpl type.
    */
-  @Override
-  public final boolean isSticky() {
-    return sticky;
-  }
+  AlertType getType();
 
   /**
-   * Sets the notification as sticky.
+   * Return if this notification should be set to sticky or not.
+   * @return true if sticky, false otherwise.
    */
-  public final void makeSticky() {
-    sticky = true;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public final String getMessage() {
-    return message;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public final String getTitle() {
-    return title;
-  }
-
-  /**
-   * {@inheritDoc}
-   */
-  @Override
-  public final NotificationType getType() {
-    return type;
-  }
+  boolean isSticky();
 
 }

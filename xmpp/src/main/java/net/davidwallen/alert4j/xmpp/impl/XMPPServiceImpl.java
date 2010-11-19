@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import net.davidwallen.alert4j.Application;
-import net.davidwallen.alert4j.Notification;
+import net.davidwallen.alert4j.Alert;
 import net.davidwallen.alert4j.xmpp.XMPPService;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Invalidate;
@@ -116,7 +116,7 @@ public class XMPPServiceImpl implements XMPPService, MessageListener {
    * {@inheritDoc}
    */
   @Override
-  public final void sendNotification(Notification alert) {
+  public final void sendAlert(Alert alert) {
     if(apps.contains(alert.getApplication())) {
       for(String user : users.keySet()) {
         try {

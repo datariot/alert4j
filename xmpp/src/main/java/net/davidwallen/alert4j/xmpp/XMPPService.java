@@ -1,6 +1,6 @@
 package net.davidwallen.alert4j.xmpp;
 
-import net.davidwallen.alert4j.NotificationService;
+import net.davidwallen.alert4j.AlertService;
 import org.jivesoftware.smack.XMPPException;
 
 /**
@@ -8,7 +8,7 @@ import org.jivesoftware.smack.XMPPException;
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public interface XMPPService extends NotificationService {
+public interface XMPPService extends AlertService {
 
   /**
    * Login to the server. Login details should be injected with configuration file or DI mechanism.

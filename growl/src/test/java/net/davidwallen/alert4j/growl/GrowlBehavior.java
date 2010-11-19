@@ -29,11 +29,11 @@ package net.davidwallen.alert4j.growl;
 import net.davidwallen.alert4j.growl.impl.GrowlServiceImpl;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import net.davidwallen.alert4j.Alert;
+import net.davidwallen.alert4j.AlertImpl;
+import net.davidwallen.alert4j.AlertType;
 import net.davidwallen.alert4j.Application;
 import net.davidwallen.alert4j.ApplicationImpl;
-import net.davidwallen.alert4j.Notification;
-import net.davidwallen.alert4j.NotificationImpl;
-import net.davidwallen.alert4j.NotificationType;
 
 /**
  * Unit test for simple App.
@@ -48,15 +48,15 @@ public class GrowlBehavior {
     Application app = new ApplicationImpl("Test Me", GrowlTestType.TEST_START, GrowlTestType.TEST_END);
     service.registerApplication(app);
 
-    Notification note1 = new NotificationImpl(app, "Starting", "Starting the test app", GrowlTestType.TEST_START);
-    Notification note2 = new NotificationImpl(app, "Ending", "Ending the test app", GrowlTestType.TEST_END);
+    Alert note1 = new AlertImpl(app, "Starting", "Starting the test app", GrowlTestType.TEST_START);
+    Alert note2 = new AlertImpl(app, "Ending", "Ending the test app", GrowlTestType.TEST_END);
 
-    service.sendNotification(note1);
-    service.sendNotification(note2);
+    service.sendAlert(note1);
+    service.sendAlert(note2);
 
   }
 
-  private enum GrowlTestType implements NotificationType {
+  private enum GrowlTestType implements AlertType {
 
     TEST_START("Start", true),
     TEST_END("End", true);

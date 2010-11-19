@@ -27,29 +27,93 @@
 package net.davidwallen.alert4j;
 
 /**
- * A service for sending notifications. An application needs to be registered before
- * notifications can be sent.
+ * A notification to be sent to Growl.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public interface NotificationService {
+public class AlertImpl implements Alert {
+
+  private final Application app;
+  private final String title;
+  private final String message;
+  private final AlertType type;
+  private Priority priority = Priority.NORMAL;
+  private boolean sticky = false;
 
   /**
-   * Return a name for the service.
-   * @return service name.
+   * Constructor for a notification.
+   * @param app The application sending the notification.
+   * @param title The title of the AlertImpl.
+   * @param message The message body of the AlertImpl.
+   * @param type The notification type. The type must be registered with the app before use.
    */
-  String getName();
+  public AlertImpl(Application app, String title, String message, AlertType type) {
+    this.app = app;
+    this.title = title;
+    this.message = message;
+    this.type = type;
+  }
 
   /**
-   * Registers and application with all of the growl clients.
-   * @param app the application to register.
+   * {@inheritDoc}
    */
-  void registerApplication(Application app);
+  @Override
+  public final Application getApplication() {
+    return this.app;
+  }
 
   /**
-   * Sends a notification to the clients.
-   * @param notification notification to send.
+   * {@inheritDoc}
    */
-  void sendNotification(Notification notification);
+  @Override
+  public final Priority getPriority() {
+    return priority;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  public final void setPriority(Priority priority) {
+    this.priority = priority;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final boolean isSticky() {
+    return sticky;
+  }
+
+  /**
+   * Sets the notification as sticky.
+   */
+  public final void makeSticky() {
+    sticky = true;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final String getMessage() {
+    return message;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final String getTitle() {
+    return title;
+  }
+
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public final AlertType getType() {
+    return type;
+  }
 
 }

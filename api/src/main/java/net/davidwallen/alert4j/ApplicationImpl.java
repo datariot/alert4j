@@ -38,7 +38,7 @@ public class ApplicationImpl implements Application {
 
   private final String name;
 
-  private final NotificationType[] registeredNotificationTypes;
+  private final AlertType[] registeredNotificationTypes;
 
   private final List<Byte> defaults = new LinkedList<Byte>();
 
@@ -47,7 +47,7 @@ public class ApplicationImpl implements Application {
    * @param name Application name.
    * @param validType valid notification types.
    */
-  public ApplicationImpl(String name, NotificationType... validType) {
+  public ApplicationImpl(String name, AlertType... validType) {
     this.name = name;
     this.registeredNotificationTypes = validType;
     for(int i=0; i<this.registeredNotificationTypes.length; i++) {
@@ -69,7 +69,7 @@ public class ApplicationImpl implements Application {
    * {@inheritDoc}
    */
   @Override
-  public final NotificationType[] getRegisteredNotificationTypes() {
+  public final AlertType[] getRegisteredAlertTypes() {
     return registeredNotificationTypes;
   }
 

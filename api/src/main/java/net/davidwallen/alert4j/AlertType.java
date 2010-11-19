@@ -27,46 +27,24 @@
 package net.davidwallen.alert4j;
 
 /**
- * A notification to be sent from applications to Notification Services.
+ *
+ * An interface for the type of notifications an application will be sending.
+ * The types must be registered when the application is registered.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public interface Notification {
+public interface AlertType {
 
   /**
-   * Get the application reference that is sending the notification.
-   * @return the application object.
+   * Get the name of the notification.
+   * @return the name of the Notification Type.
    */
-  Application getApplication();
+  String getTypeName();
 
   /**
-   * Get the message body.
-   * @return message text.
+   * Query if this notification type is enabled.
+   * @return true if enabled, false otherwise.
    */
-  String getMessage();
-
-  /**
-   * Return the priority assigned to this notification.
-   * @return priority.
-   */
-  Priority getPriority();
-
-  /**
-   * Get the title();
-   * @return the title text;
-   */
-  String getTitle();
-
-  /**
-   * Get the type of notification.
-   * @return the NotificationImpl type.
-   */
-  NotificationType getType();
-
-  /**
-   * Return if this notification should be set to sticky or not.
-   * @return true if sticky, false otherwise.
-   */
-  boolean isSticky();
+  boolean isEnabled();
 
 }

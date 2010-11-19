@@ -38,9 +38,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import net.davidwallen.alert4j.Alert;
+import net.davidwallen.alert4j.AlertType;
 import net.davidwallen.alert4j.Application;
-import net.davidwallen.alert4j.Notification;
-import net.davidwallen.alert4j.NotificationType;
 import org.apache.felix.ipojo.annotations.Component;
 import org.apache.felix.ipojo.annotations.Invalidate;
 import org.apache.felix.ipojo.annotations.Provides;
@@ -140,7 +140,7 @@ public class GrowlServiceImpl implements GrowlService {
    * {@inheritDoc}
    */
   @Override
-  public void sendNotification(Notification notification) {
+  public void sendAlert(Alert alert) {
     try {
       MessageDigest md = MessageDigest.getInstance("MD5");
       DatagramSocket socket = new DatagramSocket();
@@ -148,7 +148,7 @@ public class GrowlServiceImpl implements GrowlService {
         for (InetAddress host : hostMap.keySet()) {
           int port = hostMap.get(host);
           try {
-            byte[] byteArray = composeNotification(notification, md);
+            byte[] byteArray = composeNotification(alert, md);
             send(socket, host, port, byteArray);
           } catch (SocketException ex) {
             logger.error("Unknown Host {}", host);
@@ -208,7 +208,7 @@ public class GrowlServiceImpl implements GrowlService {
     }
     ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
     DataOutputStream out = new DataOutputStream(byteOut);
-    NotificationType[] notificationTypes = app.getRegisteredNotificationTypes();
+    AlertType[] notificationTypes = app.getRegisteredAlertTypes();
     Byte[] defaults = app.getDefaults();
 
     out.writeByte(GNTP_VERSION);
@@ -218,7 +218,7 @@ public class GrowlServiceImpl implements GrowlService {
     out.writeByte(notificationTypes.length);
     out.writeByte(defaults.length);
     out.write(appName);
-    for (NotificationType type : app.getRegisteredNotificationTypes()) {
+    for (AlertType type : app.getRegisteredAlertTypes()) {
       byte[] name = type.getTypeName().getBytes(UTF8);
       out.writeShort(name.length);
       out.write(name);
@@ -232,13 +232,13 @@ public class GrowlServiceImpl implements GrowlService {
   /**
    * Composes the GNTP byte array for a notification.
    *
-   * @param notification object to construct array for.
+   * @param alert object to construct array for.
    * @param md the MD5 function.
    * @return the byte array representing the notification.
    * @throws IOException problems constructing the array.
    */
-  private byte[] composeNotification(Notification notification, MessageDigest md) throws IOException {
-    if (null == notification) {
+  private byte[] composeNotification(Alert alert, MessageDigest md) throws IOException {
+    if (null == alert) {
       throw new IllegalArgumentException("Application cannot be null");
     }
     ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
@@ -246,19 +246,19 @@ public class GrowlServiceImpl implements GrowlService {
 
     out.writeByte(GNTP_VERSION);
     out.writeByte(GROWL_TYPE_NOTIFICATION);
-    out.writeByte(notification.getPriority().getPriorityValue());
-    if (!notification.isSticky()) {
+    out.writeByte(alert.getPriority().getPriorityValue());
+    if (!alert.isSticky()) {
       out.writeByte(0);
     } else {
       out.writeByte(1);
     }
-    byte[] noteName = notification.getType().getTypeName().getBytes(UTF8);
+    byte[] noteName = alert.getType().getTypeName().getBytes(UTF8);
     out.writeShort(noteName.length);
-    byte[] noteTitle = notification.getTitle().getBytes(UTF8);
+    byte[] noteTitle = alert.getTitle().getBytes(UTF8);
     out.writeShort(noteTitle.length);
-    byte[] noteDesc = notification.getMessage().getBytes(UTF8);
+    byte[] noteDesc = alert.getMessage().getBytes(UTF8);
     out.writeShort(noteDesc.length);
-    byte[] appName = notification.getApplication().getName().getBytes(UTF8);
+    byte[] appName = alert.getApplication().getName().getBytes(UTF8);
     out.writeShort(appName.length);
     out.write(noteName);
     out.write(noteTitle);

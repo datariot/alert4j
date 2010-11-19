@@ -27,24 +27,29 @@
 package net.davidwallen.alert4j;
 
 /**
- *
- * An interface for the type of notifications an application will be sending.
- * The types must be registered when the application is registered.
+ * A service for sending notifications. An application needs to be registered before
+ * notifications can be sent.
  *
  * @author David W. Allen <david.w.allen@me.com>
  */
-public interface NotificationType {
+public interface AlertService {
 
   /**
-   * Get the name of the notification.
-   * @return the name of the Notification Type.
+   * Return a name for the service.
+   * @return service name.
    */
-  String getTypeName();
+  String getName();
 
   /**
-   * Query if this notification type is enabled.
-   * @return true if enabled, false otherwise.
+   * Registers and application with all of the growl clients.
+   * @param app the application to register.
    */
-  boolean isEnabled();
+  void registerApplication(Application app);
+
+  /**
+   * Sends a notification to the clients.
+   * @param alert notification to send.
+   */
+  void sendAlert(Alert alert);
 
 }

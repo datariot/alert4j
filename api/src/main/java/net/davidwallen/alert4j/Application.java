@@ -43,7 +43,7 @@ public interface Application {
    * Returns an array of types that
    * @return registered NotificationTypes
    */
-  NotificationType[] getRegisteredNotificationTypes();
+  AlertType[] getRegisteredAlertTypes();
 
   /**
    * Gets a byte array of indexes to the default notification types.
